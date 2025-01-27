@@ -31,5 +31,18 @@ class CurrentWeather:
             self.refresh()
         
         return self._data['weather'][0]['main']
+    
+    def get_min_max_temp(self) -> list[int, int]:
+        '''
+        Return the min and max temperature for the current day as a list:
+        [min, max]
+        '''
+        if (self._data is None):
+            self.refresh()
+
+        min: int = round(self._data['main']['temp_min'])
+        max: int = round(self._data['main']['temp_max'])
+
+        return [min, max]
 
         
