@@ -19,6 +19,7 @@ class DisplayWeather:
         inky_display = auto()
         inky_display.set_border(inky_display.WHITE)
         FONT_NAME: str = "FredokaOne-Regular.ttf"
+        BORDER_SIZE: int = 20
 
         img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
         draw = ImageDraw.Draw(img)
@@ -47,7 +48,7 @@ class DisplayWeather:
         min_max_font = ImageFont.truetype(FONT_NAME, 24)
 
         left, top, right, bottom = min_max_font.getbbox(self._min)
-        x = TEMPERATURE_LEN + 5
+        x = BORDER_SIZE + TEMPERATURE_LEN + 5
         y = 40
 
         draw.text((x, y), self._min, inky_display.BLACK, min_max_font)
