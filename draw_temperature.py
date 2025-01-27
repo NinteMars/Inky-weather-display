@@ -66,7 +66,7 @@ class DisplayWeather:
         draw.text((x, y), self._max, inky_display.BLACK, min_max_font)
 
         # Load the image corresponding to the current condition
-        condition_image = Image.open("/images/cloudy.png")
+        condition_image = Image.open("images/cloudy.png")
 
         img.paste(condition_image, (inky_display.WIDTH - condition_image.width, 20))
 
