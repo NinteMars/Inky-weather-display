@@ -31,7 +31,7 @@ class DisplayTemperature:
         condition_font = ImageFont.truetype("FredokaOne-Regular.ttf", 24)
         _, _, w, h, = font.getbbox(self._condition)
         x = 20
-        y = 70
+        y = 85
 
         draw.text((x, y), self._condition, inky_display.BLACK, condition_font)
 
