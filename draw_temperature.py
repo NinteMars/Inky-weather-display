@@ -68,7 +68,7 @@ class DisplayWeather:
         # Load the image corresponding to the current condition
         condition_image = Image.open("images/cloudy.png")
 
-        img.paste(condition_image, (inky_display.WIDTH - condition_image.width, 20))
+        img.paste(condition_image, (inky_display.WIDTH - condition_image.width - BORDER_SIZE, 20))
 
         inky_display.set_image(img)
         inky_display.show()
