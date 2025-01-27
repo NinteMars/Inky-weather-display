@@ -21,9 +21,9 @@ class DisplayWeather:
             now = datetime.now()
             current_hour = now.hour
 
-            # if current_hour >= 6 and current_hour <= 18:
-            #     return f"{IMG_DIR}/clear_day.png"
-            return f"{IMG_DIR}/clear_day.png"
+            if current_hour >= 6 and current_hour <= 18:
+                return f"{IMG_DIR}/clear_day.png"
+            return f"{IMG_DIR}/clear_night.png"
         elif self._condition == "Cloudy":
             return f"{IMG_DIR}/cloudy.png"
         else:
