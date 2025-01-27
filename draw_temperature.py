@@ -4,15 +4,21 @@ from inky.auto import auto
 from PIL import Image, ImageFont, ImageDraw
 from current_weather import CurrentWeather
 
-class DisplayTemperature:
+class DisplayWeather:
     def __init__(self, cur_weather: CurrentWeather):
         self._temp: str = f"{str(cur_weather.get_current_temp())}°"
         self._condition: str = cur_weather.get_current_condition()
+
+        min_max: list[int, int] = cur_weather.get_min_max_temp()
+
+        self._min: str = f"{str(min_max[0])}°"
+        self._max: str = f"{str(min_max[1])}°"
     
-    def draw_temp(self) -> None:
+    def RefreshDisplay(self) -> None:
         # Initialize the display
         inky_display = auto()
         inky_display.set_border(inky_display.WHITE)
+        FONT_NAME: str = "FredokaOne-Regular.ttf"
 
         img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
         draw = ImageDraw.Draw(img)
@@ -20,9 +26,10 @@ class DisplayTemperature:
         # Add the main temperature to the display
 
         font = ImageFont.truetype("FredokaOne-Regular.ttf", 60)
-        _, _, w, h = font.getbbox(self._temp)
+        _, _, w, _ = font.getbbox(self._temp)
         x = 20
         y = 20
+        TEMPERATURE_LEN = w
 
         draw.text((x, y), self._temp, inky_display.BLACK, font)
 
@@ -34,6 +41,16 @@ class DisplayTemperature:
         y = 85
 
         draw.text((x, y), self._condition, inky_display.BLACK, condition_font)
+
+        # Add the min and max temperatures for the day
+
+        min_max_font = ImageFont.truetype(FONT_NAME, 24)
+
+        left, top, right, bottom = min_max_font.getbbox(self._min)
+        x = TEMPERATURE_LEN + 5
+        y = 40
+
+        draw.text((x, y), self._min, inky_display.BLACK, min_max_font)
 
         inky_display.set_image(img)
         inky_display.show()
