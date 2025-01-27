@@ -19,6 +19,6 @@ class DisplayTemperature:
         x = 20
         y = 20
 
-        draw.text((x, y), self._temp, inky_display.YELLOW, font)
+        draw.text((x, y), self._temp, inky_display.BLACK, font)
         inky_display.set_image(img)
         inky_display.show()
