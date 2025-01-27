@@ -36,7 +36,7 @@ class DisplayWeather:
 
         # Add the current condition
 
-        condition_font = ImageFont.truetype("FredokaOne-Regular.ttf", 24)
+        condition_font = ImageFont.truetype("FredokaOne-Regular.ttf", 25)
         _, _, w, h, = font.getbbox(self._condition)
         x = 20
         y = 85
@@ -65,6 +65,10 @@ class DisplayWeather:
         y = y + 12
         draw.text((x, y), self._max, inky_display.BLACK, min_max_font)
 
+        # Load the image corresponding to the current condition
+        condition_image = Image.open("/images/cloudy.png")
+
+        img.paste(condition_image, (inky_display.WIDTH - condition_image.width, 20))
 
         inky_display.set_image(img)
         inky_display.show()
