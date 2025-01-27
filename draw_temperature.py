@@ -53,7 +53,7 @@ class DisplayWeather:
 
         draw.text((x, y), self._min, inky_display.BLACK, min_max_font)
 
-        x = x + right + 5
+        x = x + right
         y = y + 12
         left, top, right, bottom = min_max_font.getbbox("/")
 
