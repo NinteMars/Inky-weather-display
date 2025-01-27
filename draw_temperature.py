@@ -56,7 +56,7 @@ class DisplayWeather:
         # Because of the degree symbol, the spacing between the slash and the
         # minimum temperature seems larger than it actually is. Shrink the spacing
         # a bit to make it look more even between the min-slash and slash-max
-        x = x + right - 3
+        x = x + right - 5
         y = y + 12
         left, top, right, bottom = min_max_font.getbbox("/")
         draw.text((x, y), '/', inky_display.BLACK, min_max_font)
