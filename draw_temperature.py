@@ -56,12 +56,12 @@ class DisplayWeather:
         x = x + right
         y = y + 12
         left, top, right, bottom = min_max_font.getbbox("/")
+        draw.text((x, y), '/', inky_display.BLACK, min_max_font)
 
         x = x + right
         y = y + 12
         draw.text((x, y), self._max, inky_display.BLACK, min_max_font)
 
-        draw.text((x, y), '/', inky_display.BLACK, min_max_font)
 
         inky_display.set_image(img)
         inky_display.show()
