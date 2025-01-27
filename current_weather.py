@@ -7,21 +7,29 @@ class CurrentWeather:
 
     def __init__(self, zipcode: str):
         self._zip: str = zipcode
-    
-    def get_current_temp(self) -> int:
+        self._data = None
+
+    def refresh(self):
         URL: str = f'https://api.openweathermap.org/data/2.5/weather?zip={self._zip},us&units=imperial&appid={CurrentWeather.API_KEY}'
 
         response = requests.get(URL)
 
-        data = response.json()
+        self._data = response.json()
 
         print("------ Weather API Response ------")
-        print(data)
+        print(self._data)
         print("------ Weather API Response END ------")
+    
+    def get_current_temp(self) -> int:
+        if (self._data is None):
+            self.refresh()
 
-
-        temperature: int = round(data['main']['temp'])
-
-        return temperature
+        return round(self._data['main']['temp'])
+    
+    def get_current_condition(self) -> str:
+        if (self._data is None):
+            self.refresh()
+        
+        return self._data['weather'][0]['main']
 
         
