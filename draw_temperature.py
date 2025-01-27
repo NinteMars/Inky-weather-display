@@ -3,6 +3,7 @@ import sys
 from inky.auto import auto
 from PIL import Image, ImageFont, ImageDraw
 from current_weather import CurrentWeather
+from datetime import datetime
 
 class DisplayWeather:
     def __init__(self, cur_weather: CurrentWeather):
@@ -13,6 +14,21 @@ class DisplayWeather:
 
         self._min: str = f"{str(min_max[0])}°"
         self._max: str = f"{str(min_max[1])}°"
+    
+    def _Get_condition_image_path(self) -> str:
+        IMG_DIR: str = "images"
+        if self._condition == "Clear":
+            now = datetime.now()
+            current_hour = now.hour
+
+            if current_hour >= 6 and current_hour <= 18:
+                return f"{IMG_DIR}/clear_day.png"
+            return f"{IMG_DIR}/clear_night.png"
+        elif self._condition == "Cloudy":
+            return f"{IMG_DIR}/cloudy.png"
+        else:
+            return f"{IMG_DIR}/clear_day.png"
+
     
     def RefreshDisplay(self) -> None:
         # Initialize the display
@@ -66,7 +82,7 @@ class DisplayWeather:
         draw.text((x, y), self._max, inky_display.BLACK, min_max_font)
 
         # Load the image corresponding to the current condition
-        condition_image = Image.open("images/cloudy.png")
+        condition_image = Image.open(self._Get_condition_image_path())
 
         img.paste(condition_image, (inky_display.WIDTH - condition_image.width - BORDER_SIZE, 20))
 
