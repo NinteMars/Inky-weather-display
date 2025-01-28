@@ -14,6 +14,7 @@ class DisplayWeather:
 
         self._min: str = f"{str(min_max[0])}°"
         self._max: str = f"{str(min_max[1])}°"
+        self._day_desc: str = f"{self._Get_current_date()} - {cur_weather.get_city_name()}"
     
     def _Get_condition_image_path(self) -> str:
         IMG_DIR: str = "images"
@@ -28,6 +29,10 @@ class DisplayWeather:
             return f"{IMG_DIR}/cloudy.png"
         else:
             return f"{IMG_DIR}/clear_day.png"
+        
+    def _Get_current_date(self) -> str:
+        date = datetime.now()
+        return f"{date.strftime("%a, %B %d")}"
 
     
     def RefreshDisplay(self) -> None:
@@ -85,6 +90,16 @@ class DisplayWeather:
         condition_image = Image.open(self._Get_condition_image_path())
 
         img.paste(condition_image, (inky_display.WIDTH - condition_image.width - BORDER_SIZE, 20))
+
+        # Add the day description with city
+
+        day_desc_font = ImageFont.truetype(FONT_NAME, 14)
+        left, top, right, bottom = day_desc_font.getbbox(self._day_desc)
+
+        x = 20
+        y = 115
+
+        draw.text((x, y), self._day_desc, inky_display.BLACK, day_desc_font)
 
         inky_display.set_image(img)
         inky_display.show()
