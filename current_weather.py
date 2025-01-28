@@ -27,6 +27,7 @@ class CurrentWeather:
         self._five_day_data = response.json()
 
         print("------ Five Day API Response ------")
+        print(self._five_day_data["list"][0])
         print(self._five_day_data["list"][1])
         print("------ Five Day API Response END ------")
     
