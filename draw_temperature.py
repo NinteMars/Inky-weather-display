@@ -112,5 +112,14 @@ class DisplayWeather:
 
         draw.text((x, y), self._date, inky_display.BLACK, date_font)
 
+        # Print tomorrow to start the tomorrow forecast
+
+        tomorrow_font = ImageFont.truetype(FONT_NAME, 25)
+        
+        x = 20
+        y = 160
+
+        draw.text((x, y), "Tomorrow:", inky_display.BLACK, tomorrow_font)
+
         inky_display.set_image(img)
         inky_display.show()
