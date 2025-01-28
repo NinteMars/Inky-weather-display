@@ -14,7 +14,8 @@ class DisplayWeather:
 
         self._min: str = f"{str(min_max[0])}°"
         self._max: str = f"{str(min_max[1])}°"
-        self._day_desc: str = f"{self._Get_current_date()} - {cur_weather.get_city_name()}"
+        self._location: str = cur_weather.get_city_name()
+        self._date: str = self._Get_current_date()
     
     def _Get_condition_image_path(self) -> str:
         IMG_DIR: str = "images"
@@ -91,15 +92,25 @@ class DisplayWeather:
 
         img.paste(condition_image, (inky_display.WIDTH - condition_image.width - BORDER_SIZE, 20))
 
-        # Add the day description with city
+        # Add the city name
 
-        day_desc_font = ImageFont.truetype(FONT_NAME, 14)
-        left, top, right, bottom = day_desc_font.getbbox(self._day_desc)
+        city_name_font = ImageFont.truetype(FONT_NAME, 20)
+        left, top, right, bottom = city_name_font.getbbox(self._location)
 
         x = 20
         y = 115
 
-        draw.text((x, y), self._day_desc, inky_display.BLACK, day_desc_font)
+        draw.text((x, y), self._day_desc, inky_display.BLACK, city_name_font)
+
+        # Add the current date
+
+        date_font = ImageFont.truetype(FONT_NAME, 16)
+        left, top, right, bottom = date_font.getbbox(self._date)
+
+        x = 20
+        y = 135
+
+        draw.text((x, y), self._date, inky_display.BLACK, date_font)
 
         inky_display.set_image(img)
         inky_display.show()
