@@ -19,6 +19,16 @@ class CurrentWeather:
         print("------ Weather API Response ------")
         print(self._data)
         print("------ Weather API Response END ------")
+
+        FIVE_DAY_URL: str = f'https://api.openweathermap.org/data/2.5/forecast?zip={self._zip},us&units=imperial&appid={CurrentWeather.API_KEY}'
+
+        response = requests.get(FIVE_DAY_URL)
+
+        self._five_day_data = response.json()
+
+        print("------ Five Day API Response ------")
+        print(self._five_day_data)
+        print("------ Five Day API Response END ------")
     
     def get_current_temp(self) -> int:
         if (self._data is None):
