@@ -100,7 +100,7 @@ class DisplayWeather:
         x = 20
         y = 115
 
-        draw.text((x, y), self._day_desc, inky_display.BLACK, city_name_font)
+        draw.text((x, y), self._location, inky_display.BLACK, city_name_font)
 
         # Add the current date
 
