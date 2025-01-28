@@ -44,5 +44,11 @@ class CurrentWeather:
         max: int = round(self._data['main']['temp_max'])
 
         return [min, max]
+    
+    def get_city_name(self) -> str:
+        if (self._data is None):
+            self.refresh()
+        
+        return self._data['name']
 
         
