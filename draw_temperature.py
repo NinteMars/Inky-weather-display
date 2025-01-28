@@ -32,7 +32,7 @@ class DisplayWeather:
         
     def _Get_current_date(self) -> str:
         date = datetime.now()
-        return (f"{date.strftime("%a, %B %d")}")
+        return f"{date.strftime('%a, %B %d')}"
 
     
     def RefreshDisplay(self) -> None:
