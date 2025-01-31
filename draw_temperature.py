@@ -3,7 +3,7 @@ import sys
 from inky.auto import auto
 from PIL import Image, ImageFont, ImageDraw
 from current_weather import CurrentWeather
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class DisplayWeather:
     def __init__(self, cur_weather: CurrentWeather):
@@ -16,6 +16,11 @@ class DisplayWeather:
         self._max: str = f"{str(min_max[1])}°"
         self._location: str = cur_weather.get_city_name()
         self._date: str = self._Get_current_date()
+
+        tmrw_min, tmrw_max = cur_weather.get_tomorrow_temps()
+
+        self._tmrw_min: str = f"{str(tmrw_min)}°"
+        self._tmrw_max: str = f"{str(tmrw_max)}°"
     
     def _Get_condition_image_path(self) -> str:
         IMG_DIR: str = "images"
@@ -120,6 +125,13 @@ class DisplayWeather:
         y = 160
 
         draw.text((x, y), "Tomorrow:", inky_display.BLACK, tomorrow_font)
+
+        # Print tomorrow's min and max temps
+        small_temp_font = ImageFont.truetype(FONT_NAME, 16)
+        left, top, right, bottom = small_temp_font.getbbox(self._tmrw_min)
+        x = BORDER_SIZE
+        y = 190
+        draw.text((x, y), self._min, inky_display.BLACK, small_temp_font)
 
         inky_display.set_image(img)
         inky_display.show()
