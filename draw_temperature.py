@@ -131,7 +131,7 @@ class DisplayWeather:
         left, top, right, bottom = small_temp_font.getbbox(self._tmrw_min)
         x = BORDER_SIZE
         y = 190
-        draw.text((x, y), self._min, inky_display.BLACK, small_temp_font)
+        draw.text((x, y), self._tmrw_min, inky_display.BLACK, small_temp_font)
 
         inky_display.set_image(img)
         inky_display.show()
