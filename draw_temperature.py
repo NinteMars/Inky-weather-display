@@ -127,15 +127,16 @@ class DisplayWeather:
         draw.text((x, y), "Tomorrow:", inky_display.BLACK, tomorrow_font)
 
         # Print tomorrow's min and max temps
+
         small_temp_font = ImageFont.truetype(FONT_NAME, 16)
         left, top, right, bottom = small_temp_font.getbbox(self._tmrw_min)
         x = BORDER_SIZE
         y = 190
         draw.text((x, y), self._tmrw_min, inky_display.BLACK, small_temp_font)
 
-        left, top, right, bottom = small_temp_font.getbbox("/")
-        x = x + right + 5
+        x = x + right -5
         y = y + 8
+        left, top, right, bottom = small_temp_font.getbbox("/")
         draw.text((x, y), "/", inky_display.BLACK, small_temp_font)
 
         x = x + right
