@@ -134,7 +134,7 @@ class DisplayWeather:
         draw.text((x, y), self._tmrw_min, inky_display.BLACK, small_temp_font)
 
         left, top, right, bottom = small_temp_font.getbbox("/")
-        x = x + right
+        x = x + right + 5
         y = y + 8
         draw.text((x, y), "/", inky_display.BLACK, small_temp_font)
 
