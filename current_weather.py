@@ -2,7 +2,6 @@
 import requests
 import os
 from datetime import datetime, timedelta
-from statistics import fmean
 
 class CurrentWeather:
     API_KEY = os.getenv('WEATHER_API')
@@ -83,7 +82,7 @@ class CurrentWeather:
         max_temps: list[float] = [timestamp['main']['temp_max'] for timestamp in self._tomorrow_weather]
         min_temps: list[float] = [timestamp['main']['temp_min'] for timestamp in self._tomorrow_weather]
 
-        max_temp: int = round(fmean(max_temps))
-        min_temp: int = round(fmean(min_temps))
+        max_temp: int = round(max(max_temps))
+        min_temp: int = round(min(min_temps))
 
         return (min_temp, max_temp)
