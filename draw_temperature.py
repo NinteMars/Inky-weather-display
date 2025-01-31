@@ -133,5 +133,9 @@ class DisplayWeather:
         y = 190
         draw.text((x, y), self._tmrw_min, inky_display.BLACK, small_temp_font)
 
+        x = x + right - 5
+        y = y + 8
+        draw.text((x, y), "/", inky_display.BLACK, small_temp_font)
+
         inky_display.set_image(img)
         inky_display.show()
