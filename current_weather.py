@@ -43,6 +43,7 @@ class CurrentWeather:
             weather_time = datetime.fromtimestamp(time["dt"])
             if weather_time.date() == tomorrow_date:
                 self._tomorrow_weather.append(time)
+                print(f"Timestamp:\n{time}\n")
             elif weather_time.date() == two_days_date:
                 self._two_days_weather.append(time)
 
